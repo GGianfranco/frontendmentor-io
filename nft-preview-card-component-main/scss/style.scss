@@ -1,0 +1,180 @@
+@import "colors";
+@import "globals";
+@import "typography";
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  // justify-content: center;
+  // align-content: center;
+  place-content: center;
+  background-color: $main-bg;
+}
+
+.grid {
+  min-width: min-content;
+  max-width: 350px;
+  min-height: min-content;
+  background-color: $card-bg;
+  padding: 1.5em;
+  border-radius: 1em;
+
+  // Grid template
+  display: grid;
+  gap: 1.5em;
+  grid-template-columns: repeat(auto-fit, minmax(0, auto));
+  grid-template-rows: repeat(auto-fit, auto);
+  grid-template-areas:
+    "image image image image"
+    "title title title title"
+    "description description description description"
+    "etherium etherium daysLeft daysLeft"
+    "line line line line"
+    "author author author author";
+  .image {
+    grid-area: image;
+  }
+  .title {
+    grid-area: title;
+  }
+  .description {
+    grid-area: description;
+  }
+  .etherium {
+    grid-area: etherium;
+  }
+  .daysLeft {
+    grid-area: daysLeft;
+  }
+  hr {
+    grid-area: line;
+  }
+  .author {
+    grid-area: author;
+  }
+
+  // Grid styles
+  .image {
+    max-width: 100%;
+    border-radius: 1em;
+    position: relative;
+    cursor: pointer;
+
+    // & > * {
+    //   z-index: 10;
+    // }
+    &::after {
+      content: url(/images/icon-view.svg);
+      display: grid;
+      // justify-content: center;
+      // align-content: center;
+      place-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: $cyan;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      z-index: 0;
+      border-radius: 1em;
+      transition: 0.3s;
+    }
+
+    &:hover:after {
+      opacity: 0.5;
+    }
+
+    img {
+      border-radius: 1em;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .title {
+    color: $white;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      color: $cyan;
+    }
+  }
+
+  .description {
+    color: $softBlue;
+  }
+
+  .etherium {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: row;
+    justify-items: start;
+
+    p {
+      color: $cyan;
+      white-space: nowrap;
+
+      &::before {
+        content: url(/images/icon-ethereum.svg);
+        fill: $cyan;
+        margin-right: 0.3em;
+        vertical-align: middle;
+      }
+    }
+  }
+  .daysLeft {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: row;
+    justify-items: end;
+
+    p {
+      color: $softBlue;
+      white-space: nowrap;
+
+      &::before {
+        content: url(/images/icon-clock.svg);
+        fill: $softBlue;
+        margin-right: 0.3em;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  hr {
+    color: $line;
+    opacity: 30%;
+  }
+  .author {
+    p {
+      color: $softBlue;
+      white-space: nowrap;
+
+      &::before {
+        display: inline-block;
+        content: "";
+        background: url(/images/image-avatar.png) no-repeat 0 0;
+        border: 2px solid $white;
+        border-radius: 50%;
+        margin-right: 0.5em;
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+        background-size: 32px 32px;
+        vertical-align: middle;
+      }
+
+      b {
+        color: $white;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          color: $cyan;
+        }
+      }
+    }
+  }
+}
